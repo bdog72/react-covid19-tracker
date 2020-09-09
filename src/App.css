@@ -13,30 +13,34 @@ body {
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
-  /* flex-wrap: wrap; */
-  /* margin: 20px; */
-  /* border: 10px solid #000; */
+}
+
+.app__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .app__left {
   flex: 0.9;
 }
 
-.app__header {
-  display: flex;
-  justify-content: space-between;
-  /* width: 100%; */
-  align-items: center;
-  margin-bottom: 20px;
-}
-
 .app__stats {
   display: flex;
   justify-content: space-between;
+  min-width: 100px;
+}
+
+.app h1 strong {
+  color: red;
 }
 
 @media (max-width: 990px) {
   .app {
+    flex-direction: column;
+  }
+  .app__stats {
     flex-direction: column;
   }
 }

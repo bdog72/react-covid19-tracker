@@ -1,2 +1,13 @@
 /*  */
 /*  */
+
+.infoBox {
+  min-width: 200px;
+  margin: 0 10px;
+}
+
+@media (max-width: 990px) {
+  .infoBox {
+    margin: 10px 0;
+  }
+}
