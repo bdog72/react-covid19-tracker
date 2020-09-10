@@ -3,10 +3,17 @@
 import React from 'react';
 import '../styles/Map.css';
 
+import { Map as LeafletMap, TileLayer } from 'react-leaflet';
+
 function Map() {
   return (
     <div className='map'>
-      <h1>I Am A Map Component</h1>
+      <LeafletMap>
+        <TileLayer
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+      </LeafletMap>
     </div>
   );
 }

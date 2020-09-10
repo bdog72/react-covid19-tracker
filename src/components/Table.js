@@ -3,10 +3,17 @@
 import React from 'react';
 import '../styles/Table.css';
 
-function Table() {
+function Table({ countries }) {
   return (
-    <div>
-      <h1>Table</h1>
+    <div className='table'>
+      {countries.map(({ country, cases }) => (
+        <tr>
+          <td>{country}</td>
+          <td>
+            <strong>{cases}</strong>
+          </td>
+        </tr>
+      ))}
     </div>
   );
 }

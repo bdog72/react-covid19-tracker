@@ -14,11 +14,26 @@ import {
 import InfoBox from './components/InfoBox';
 
 import Map from './components/Map';
+import Table from './components/Table';
+
+import { sortData } from './util';
+import LineGraph from './components/LineGraph';
+
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://disease.sh/v3/covid-19/all')
+      .then((response) => response.json())
+      .then((data) => {
+        setCountryInfo(data);
+      });
+  }, []);
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -29,6 +44,8 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
+          const sortedData = sortData(data);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
@@ -76,9 +93,21 @@ function App() {
         </div>
 
         <div className='app__stats'>
-          <InfoBox title='Cases' cases={1234} total={2000} />
-          <InfoBox title='Recovered' cases={1234} total={3000} />
-          <InfoBox title='Deaths' cases={1234} total={4000} />
+          <InfoBox
+            title='Cases'
+            cases={countryInfo.todayCases}
+            total={countryInfo.cases}
+          />
+          <InfoBox
+            title='Recovered'
+            cases={countryInfo.todayRecovered}
+            total={countryInfo.recovered}
+          />
+          <InfoBox
+            title='Deaths'
+            cases={countryInfo.todayDeaths}
+            total={countryInfo.deaths}
+          />
         </div>
 
         <Map />
@@ -86,7 +115,9 @@ function App() {
       <Card className='app__right'>
         <CardContent>
           <h3>Live Cases By Country</h3>
+          <Table countries={tableData} />
           <h3>WorldWide New Cases</h3>
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
