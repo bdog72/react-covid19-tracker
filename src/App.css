@@ -26,6 +26,21 @@ body {
   flex: 0.9;
 }
 
+.app__right {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__right .MuiCardContent-root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.app__graph {
+  flex-grow: 1;
+}
+
 .app__stats {
   display: flex;
   justify-content: space-between;
@@ -34,6 +49,10 @@ body {
 
 .app h1 strong {
   color: red;
+}
+
+.app__worldwideCasesHeader {
+  margin-bottom: 15px;
 }
 
 @media (max-width: 990px) {
